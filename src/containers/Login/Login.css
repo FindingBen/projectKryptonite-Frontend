@@ -1,0 +1,10 @@
+.loginWrapper {
+  backdrop-filter: blur(10px);
+  border: #efc862 solid 1px;
+  color: #efc862;
+  width: 25rem;
+  height: 25rem;
+  margin-left: 45rem;
+  margin-right: 40rem;
+  margin-top: 5%;
+}

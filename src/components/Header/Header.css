@@ -1,0 +1,19 @@
+main > .container {
+  padding: 60px 15px 0;
+}
+
+#navHeader {
+  position: static;
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  position: fixed;
+  top: 0;
+  right: 30rem;
+  color: #efc862;
+  z-index: 1030;
+}

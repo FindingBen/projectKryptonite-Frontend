@@ -1,0 +1,34 @@
+.mainProfileWrapper {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.bankWrapper {
+  position: absolute;
+  float: right;
+  backdrop-filter: blur(7px);
+  height: 100%;
+  border: #efc862 solid 1px;
+  height: 19rem;
+  width: 25rem;
+  margin-top: 27rem;
+}
+
+.bankForm {
+  margin-top: 20px;
+  width: 200px;
+  margin-left: 22px;
+}
+
+.profileWrapper {
+  position: absolute;
+  backdrop-filter: blur(10px);
+  border: #efc862 solid 1px;
+  color: #efc862;
+  width: 25rem;
+  height: 22rem;
+
+  margin-top: 3rem;
+}
