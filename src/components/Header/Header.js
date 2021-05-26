@@ -33,6 +33,15 @@ function Header({ history }) {
                 </a>
               </li>
               <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  onClick={() => handleClick("checkout")}
+                >
+                  <h4>Checkout</h4>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" onClick={() => handleClick("market")}>
                   <h4>Market</h4>
                 </a>
