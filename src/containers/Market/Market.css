@@ -7,22 +7,19 @@
 
 .cardWrapper {
   backdrop-filter: blur(10px);
-  margin-top: 50px;
+
   width: 250px;
   margin-right: 10px;
   color: #efc862;
-  height: 35rem;
+  height: 44rem;
   margin-left: 5rem;
   align-items: center;
+  font-size: 12px;
 }
 
-.main-card {
-  margin-top: 20px;
-  width: 200px;
-  height: 150px;
-  margin-left: 22px;
+.card-content {
+  font-size: 12px;
 }
-
 .chartDiv {
   float: right;
   background: rgb(88, 68, 68);
@@ -33,15 +30,4 @@
   width: 50rem;
   margin-left: 450px;
   margin-top: 50px;
-}
-
-.buttonDiv {
-  margin-top: 3rem;
-  display: grid;
-  height: 7rem;
-}
-
-.customBtn {
-  background: transparent;
-  padding-left: 1px;
 }

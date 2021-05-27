@@ -2,10 +2,6 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import "./Market.css";
 import { useEffect, useState } from "react";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
 import { Button } from "@material-ui/core";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
@@ -13,7 +9,7 @@ function Market({ getCoins }) {
   var tokenAuth = sessionStorage.getItem("token");
   const [coins, setCoins] = useState();
   const [chartData, setChartData] = useState();
-
+  const [balance, setBalance] = useState();
   async function getPrices(text) {
     let coin_price = [];
     fetch(`http://127.0.0.1:8000/api/v1/market/retrieve/?name=${text}`, {
@@ -53,7 +49,42 @@ function Market({ getCoins }) {
       });
   }
 
+  async function transaction(transactionData) {
+    fetch("http://127.0.0.1:8000/api/v1/portfolio/create/transactions", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "X-ACCESS-TOKEN": tokenAuth,
+      },
 
+      body: JSON.stringify(transactionData),
+    }).then((data) => data.json());
+  }
+
+  const [crypto_coin, setCrypto] = useState("");
+  const [transaction_type, setTransaction] = useState("");
+
+  const handleTransaction = async (e) => {
+    //e.preventDefault();
+    await transaction({
+      crypto_coin,
+      transaction_type,
+    });
+  };
+
+  async function getBalance() {
+    fetch("http://127.0.0.1:8000/api/v1/portfolio/list", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "X-ACCESS-TOKEN": tokenAuth,
+      },
+    })
+      .then((data) => data.json())
+      .then((data) => setBalance(data));
+  }
 
   async function getCoins() {
     fetch(`http://127.0.0.1:8000/api/v1/market/list`, {
@@ -69,10 +100,10 @@ function Market({ getCoins }) {
   }
 
   useEffect(() => {
-    // getPrices();
     getCoins();
+    getBalance();
   }, []);
-  console.log(coins);
+
   const handleCoin = (text) => {
     getPrices(text);
   };
@@ -80,35 +111,40 @@ function Market({ getCoins }) {
   return (
     <div className="mainWrapper">
       <div className="cardWrapper">
+        <hr></hr>
         {coins &&
           coins.map((coin) => {
             return (
-              <Card className="main-card">
-                <CardContent>
-                  <Typography
-                    className="text-card"
-                    color="textSecondary"
-                    gutterBottom
-                  >
-                    <p>Name: {coin.name}</p>
-                  </Typography>
-                  <Typography
-                    className="text-card"
-                    color="textSecondary"
-                    gutterBottom
-                  >
-                    <p>Symbol: {coin.symbol}</p>
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button onClick={() => handleCoin(coin.name)} size="small">
-                    Buy
-                  </Button>
-                  <Button onClick={() => handleCoin(coin.name)} size="small">
-                    Show
-                  </Button>
-                </CardActions>
-              </Card>
+              <div>
+                <h5>Name: {coin.name}</h5>
+                <h5>Current price: {coin.current_price}</h5>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  onClick={() =>
+                    handleTransaction(setCrypto(coin.name), setTransaction("B"))
+                  }
+                >
+                  Buy
+                </Button>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  onClick={() =>
+                    handleTransaction(setCrypto(coin.name), setTransaction("S"))
+                  }
+                >
+                  Sell
+                </Button>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  onClick={() => handleCoin(coin.name)}
+                >
+                  Show
+                </Button>
+                <hr />
+              </div>
             );
           })}
       </div>

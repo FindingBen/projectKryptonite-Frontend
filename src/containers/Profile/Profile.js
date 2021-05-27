@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 function Profile({ getUser }) {
   var tokenAuth = sessionStorage.getItem("token");
   const [user, setUser] = useState();
+  const [transactions, setTransactions] = useState();
 
   async function getUser() {
     fetch(`http://127.0.0.1:8000/api/v1/accounts/user`, {
@@ -17,6 +18,19 @@ function Profile({ getUser }) {
     })
       .then((data) => data.json())
       .then((data) => setUser(data));
+  }
+
+  async function getTransactions() {
+    fetch(`http://127.0.0.1:8000/api/v1/portfolio/list/transactions`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "X-ACCESS-TOKEN": tokenAuth,
+      },
+    })
+      .then((data) => data.json())
+      .then((data) => setTransactions(data));
   }
 
   async function updateUser(userData) {
@@ -45,6 +59,7 @@ function Profile({ getUser }) {
 
   useEffect(() => {
     getUser();
+    getTransactions();
   }, []);
   //For user update
   const [city, setAddress] = useState("");
@@ -117,6 +132,20 @@ function Profile({ getUser }) {
             Link card
           </button>
         </form>
+      </div>
+      <div className="transactionWrapper">
+        <h3>Portfolio history</h3>
+        <hr></hr>
+        {transactions &&
+          transactions.map((object) => {
+            return (
+              <div>
+                <p>Ammount: {object.ammount}</p>
+                <p>Type: {object.transaction_type}</p>
+                <hr></hr>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

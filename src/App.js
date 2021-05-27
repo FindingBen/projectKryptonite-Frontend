@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import "./App.css";
+import { useEffect, useState } from "react";
 import Header from "./components/Header/index";
 import Login from "./containers/Login";
 import SignUp from "./containers/SignUp";
