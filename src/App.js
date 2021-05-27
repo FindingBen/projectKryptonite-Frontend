@@ -16,6 +16,7 @@ import Profile from "./containers/Profile/Profile";
 import ProtectedRoute from "./authentication/protected.route";
 import useToken from "./authentication/useToken";
 import Market from "./containers/Market/Market";
+import Checkout from "./containers/Checkout/Checkout";
 
 export default function App() {
   const history = createBrowserHistory();
@@ -45,6 +46,12 @@ export default function App() {
             path="/market"
             exact
             component={Market}
+            token={token}
+          ></ProtectedRoute>
+          <ProtectedRoute
+            path="/checkout"
+            exact
+            component={Checkout}
             token={token}
           ></ProtectedRoute>
         </Switch>
