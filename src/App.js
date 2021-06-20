@@ -10,13 +10,14 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header/index";
 import Login from "./containers/Login";
 import SignUp from "./containers/SignUp";
-import Home from "./containers/Home/Home";
 import News from "./containers/News/News";
+import Statistics from "./containers/Statistics/Statistics";
 import Profile from "./containers/Profile/Profile";
 import ProtectedRoute from "./authentication/protected.route";
 import useToken from "./authentication/useToken";
 import Market from "./containers/Market/Market";
-import Checkout from "./containers/Checkout/Checkout";
+import { Provider } from "react-redux";
+import store from "./store";
 
 export default function App() {
   const history = createBrowserHistory();
@@ -24,39 +25,44 @@ export default function App() {
 
   return (
     <div>
-      <Router history={history}>
-        <Header className="header" />
-        <Switch>
-          <Route path="/home" exact component={Home}></Route>
-          <Redirect from="/" to="/login" exact />
-          <Route path="/login" exact>
-            <Login setToken={setToken} />
-          </Route>
-          <Route path="/logout" onClick={removeToken} exact></Route>
-          <ProtectedRoute
-            path="/profile"
-            exact
-            component={Profile}
-            token={token}
-          ></ProtectedRoute>
-          <Route path="/signup">
-            <SignUp />
-          </Route>
-          <ProtectedRoute
-            path="/market"
-            exact
-            component={Market}
-            token={token}
-          ></ProtectedRoute>
-          <ProtectedRoute
-            path="/checkout"
-            exact
-            component={Checkout}
-            token={token}
-          ></ProtectedRoute>
-        </Switch>
-      </Router>
-      <News />
+      <Provider store={store}>
+        <Router history={history}>
+          <Header className="header" />
+          <Switch>
+            <Route path="/login" exact>
+              <Login setToken={setToken} />
+            </Route>
+            <Route path="/logout" onClick={removeToken} exact></Route>
+            <ProtectedRoute
+              path="/statistics"
+              exact
+              component={Statistics}
+              token={token}
+            ></ProtectedRoute>
+            <ProtectedRoute
+              path="/profile"
+              exact
+              component={Profile}
+              token={token}
+            ></ProtectedRoute>
+            <Route path="/signup">
+              <SignUp />
+            </Route>
+            <ProtectedRoute
+              path="/market"
+              exact
+              component={Market}
+              token={token}
+            ></ProtectedRoute>
+            <ProtectedRoute
+              path="/news"
+              exact
+              component={News}
+              token={token}
+            ></ProtectedRoute>
+          </Switch>
+        </Router>
+      </Provider>
     </div>
   );
 }

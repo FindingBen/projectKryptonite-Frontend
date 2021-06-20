@@ -23,29 +23,17 @@ function Header({ history }) {
         <div class="container-fluid">
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  onClick={() => handleClick("home")}
-                >
-                  <h4>Home</h4>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  onClick={() => handleClick("checkout")}
-                >
-                  <h4>Checkout</h4>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" onClick={() => handleClick("market")}>
-                  <h4>Market</h4>
-                </a>
-              </li>
+              {sessionStorage.getItem("token") ? (
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    aria-current="page"
+                    onClick={() => handleClick("market")}
+                  >
+                    <h4>Market</h4>
+                  </a>
+                </li>
+              ) : null}
               {sessionStorage.getItem("token") ? (
                 <li class="nav-item">
                   <a
@@ -57,12 +45,40 @@ function Header({ history }) {
                   </a>
                 </li>
               ) : null}
+              {sessionStorage.getItem("token") ? (
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    aria-current="page"
+                    onClick={() => handleClick("news")}
+                  >
+                    <h4>News</h4>
+                  </a>
+                </li>
+              ) : null}
+              {sessionStorage.getItem("token") ? (
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    aria-current="page"
+                    onClick={() => handleClick("statistics")}
+                  >
+                    <h4>Statistics</h4>
+                  </a>
+                </li>
+              ) : null}
 
-              <li class="nav-item">
-                <a class="nav-link" onClick={() => handleClick("signup")}>
-                  <h4>Sign up</h4>
-                </a>
-              </li>
+              {!sessionStorage.getItem("token") ? (
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    aria-current="page"
+                    onClick={() => handleClick("signup")}
+                  >
+                    <h4>Sign up</h4>
+                  </a>
+                </li>
+              ) : null}
               {sessionStorage.getItem("token") ? (
                 <li class="nav-item">
                   <a class="nav-link" onClick={() => removeToken()}>

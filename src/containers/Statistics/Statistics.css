@@ -1,0 +1,65 @@
+.mainProfileWrapper {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.bankWrapper {
+  position: absolute;
+  float: right;
+  backdrop-filter: blur(7px);
+  height: 100%;
+  border: #efc862 solid 1px;
+  height: 19rem;
+  width: 25rem;
+  margin-top: 27rem;
+}
+
+.purchaseStatistics {
+  position: absolute;
+  backdrop-filter: blur(7px);
+  border: #efc862 solid 1px;
+  width: 25rem;
+  margin-top: 3rem;
+  margin-left: 27rem;
+  height: 20rem;
+}
+
+.bankForm {
+  margin-top: 20px;
+  width: 200px;
+  margin-left: 22px;
+}
+
+.listTransactions {
+  display: inline;
+}
+
+.transaction {
+  display: inline;
+  float: left;
+}
+
+.profileWrapper {
+  position: absolute;
+  backdrop-filter: blur(10px);
+  border: #efc862 solid 1px;
+  color: #efc862;
+  width: 22rem;
+  height: 20rem;
+  padding-left: 30px;
+  margin-top: 3rem;
+}
+
+.transactionWrapper {
+  position: absolute;
+  border: #efc862 solid 1px;
+  backdrop-filter: blur(10px);
+  overflow: auto;
+  width: 100%;
+  display: inline;
+  margin-left: 0rem;
+  margin-top: 25rem;
+  height: 17rem;
+}

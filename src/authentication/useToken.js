@@ -6,7 +6,6 @@ export default function useToken() {
   async function getToken() {
     const tokenString = sessionStorage.getItem("token");
     if (tokenString == "undefined") {
-      console.log("SS");
       sessionStorage.removeItem("token");
     } else {
       return tokenString;

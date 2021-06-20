@@ -39,7 +39,7 @@ export default function Login({ setToken }) {
   };
 
   if (isLoggedIn) {
-    history.push("/home");
+    history.push("/market");
   }
 
   return (

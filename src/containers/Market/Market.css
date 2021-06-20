@@ -3,22 +3,24 @@
   height: 100%;
   width: 100%;
   display: flex;
+  font-size: 15px;
 }
 
 .cardWrapper {
   backdrop-filter: blur(10px);
-
+  overflow: auto;
   width: 250px;
-  margin-right: 10px;
   color: #efc862;
-  height: 44rem;
-  margin-left: 5rem;
+  margin-top: 4rem;
+  margin-left: 3rem;
+  height: 550px;
   align-items: center;
-  font-size: 12px;
+  font-size: 17px;
 }
 
 .card-content {
-  font-size: 12px;
+  font-size: 10px;
+  position: absolute;
 }
 .chartDiv {
   float: right;
@@ -26,8 +28,32 @@
   backdrop-filter: blur(12px);
   height: 100%;
   border: #efc862 solid 1px;
-  height: 30rem;
-  width: 50rem;
+  height: 25rem;
+  width: 40rem;
   margin-left: 450px;
   margin-top: 50px;
+}
+
+.profileDiv {
+  border: #efc862 solid 1px;
+  backdrop-filter: blur(12px);
+  height: 25rem;
+  width: 20rem;
+  margin-left: 22rem;
+  margin-top: 3rem;
+  position: absolute;
+}
+
+.msgDiv {
+  position: absolute;
+  width: 15.6rem;
+  margin-left: 3rem;
+  height: 20px;
+}
+
+.buyBtn,
+.sellBtn,
+.showBtn {
+  height: 25px;
+  width: 20px;
 }
